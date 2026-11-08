@@ -64,6 +64,7 @@ app.post('/admin/api/chips',auth,async(req,res)=>{if(req.user.role!=='admin')ret
  const p=memory.get(id);if(!p||p.chips+delta<0)return res.sendStatus(400);p.chips+=delta;res.json({chips:p.chips});
 });
 app.get('/admin',(_,res)=>res.sendFile(new URL('../public/admin.html',import.meta.url).pathname));
+app.get('/game',(_,res)=>res.sendFile(new URL('../public/game.html',import.meta.url).pathname));
 const server=createServer(app),wss=new WebSocketServer({server,path:'/game'});
 const send=(ws,obj)=>{if(ws.readyState===1)ws.send(JSON.stringify(obj));};
 function publish(t){for(const p of t.players)send(p.ws,{type:'table',table:t.id,players:t.players.map(x=>({name:x.name,packed:x.packed,seen:x.seen})),pot:t.pot,turn:t.players[t.turn]?.name||null,state:t.state,hand:t.state==='playing'?p.hand:null});}
