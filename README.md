@@ -18,3 +18,6 @@ Deploy this repository as a service. Root railway.json points to server/Dockerfi
 
 ## GitHub Actions
 Open Actions > Build Android APK > Run workflow. Download the debug APK artifact after a successful build.
+
+## Browser demo
+After Railway deploys the latest main commit, open `/game` for the virtual-chip browser practice table. This route is served by `server/src/index.js`.
